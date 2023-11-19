@@ -14,7 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->string('image_url')->after('post_comment');
+            $table->after('post_comment', function($table)
+            {
+                $table->string('meal_image_url');
+            });
         });
     }
 
