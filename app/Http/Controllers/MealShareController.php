@@ -26,4 +26,9 @@ class MealShareController extends Controller
         $post->fill($input)->save();
         return redirect('/');
     }
+    
+    public function show(Post $post)
+    {
+        return view('posts.show')->with(['post' => $post]);
+    }
 }

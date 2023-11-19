@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理一覧ページ</title>
+        <title>料理詳細ページ</title>
     </head>
     <body>
         <!-- 固定部分ここから -->
@@ -28,7 +28,6 @@
         <!-- 固定部分ここまで -->
         <!-- 投稿ここから -->
         <div class="posts">
-            @foreach ($posts as $post)
                 <div class="posts_left">
                     <table>
                         <tr>
@@ -49,7 +48,6 @@
                         </tr>
                     </table>
                 </div>
-                
                 <div>
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
@@ -64,18 +62,23 @@
                         </tr>
                     </table>
                 </div>
-                <div class="stamps_comments">
-                    <table>
-                        <tr>
-                            <th>取得スタンプ数</th>
-                            <td>00000</td>
-                            <th>コメント数</th>
-                            <td>00000</td>
-                    </table>
+                <div class="post_comment">
+                    <h3>料理投稿者のコメント</h3>
+                    <div>{{ $post->post_comment }}</div>
                 </div>
-                <a href="/posts/{{ $post->id }}}">詳細</a>
-                <p></p>
-            @endforeach
+                <div class="stamps">
+                    <h5>スタンプをここに表示</h5>
+                </div>
+                <div class="review_comments">
+                    <h3>みんなの声</h3>
+                    <h5>ここにレビューを表示</h5>
+                    <form action="/posts/{post}" method="POST">
+                        <h3>コメントする</h3>
+                        <textarea name="review_comments" placeholder="100字以内で書いてください"></textarea>
+                        <input type="submit" value="コメント！"/>
+                    </form>
+                </div>
+         
         </div>
     </body>
 </html>
