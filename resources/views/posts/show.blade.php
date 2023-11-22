@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -67,15 +67,20 @@
                     <div>{{ $post->post_comment }}</div>
                 </div>
                 <div class="stamps">
-                    <h5>スタンプをここに表示</h5>
+                    <h5>いいね数をここに表示</h5>
                 </div>
                 <div class="review_comments">
                     <h3>みんなの声</h3>
-                    <h5>ここにレビューを表示</h5>
-                    <form action="/posts/{post}" method="POST">
+                    @foreach($reviews as $review)
+                        <div>{{ $review->review_comment }}</div>
+                    @endforeach
+                    
+                    <form action="/posts/{post}/review" method="POST">
+                        @csrf
                         <h3>コメントする</h3>
-                        <textarea name="review_comments" placeholder="100字以内で書いてください"></textarea>
+                        <textarea name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
                         <input type="submit" value="コメント！"/>
+                        <input type="hidden" name="review[posts_id]" value="{{ $post->id }}">
                     </form>
                 </div>
          
