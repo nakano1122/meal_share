@@ -18,7 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', [MealShareController::class, 'index']);
-Route::get('/create', [MealShareController::class, 'create']);
-Route::post('/posts', [MealShareController::class, 'store']);
-Route::get('/posts/{post}', [MealShareController::class, 'show']);
+Route::get("/", [MealShareController::class, 'index']);
+Route::get("/create", [MealShareController::class, 'create']);
+Route::post("/posts", [MealShareController::class, 'store']);
+Route::get("/posts/{post}", [MealShareController::class, 'show']);
+Route::post("/posts/{post}/review", [MealShareController::class, 'review_create']);
