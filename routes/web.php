@@ -29,11 +29,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::controller(MealShareController::class)->middleware(['auth'])->group(function(){
+    Route::get('/', 'index')->name('index')->middleware('auth');
+    Route::get('/create', 'create')->name('create');
+    Route::post('/posts', 'store')->name('store');
+    Route::get('/posts/{post}', 'show')->name('show');
+    Route::post('/posts/{post}/review', 'review_create')->name('review_create');
+});
 
-Route::get('/', [MealShareController::class, 'index'])->name('index');
-Route::get('/create', [MealShareController::class, 'create'])->name('create');
-Route::post('/posts', [MealShareController::class, 'store']);
-Route::get('/posts/{post}', [MealShareController::class, 'show']);
-Route::post('/posts/{post}/review', [MealShareController::class, 'review_create']);
 
 require __DIR__.'/auth.php';

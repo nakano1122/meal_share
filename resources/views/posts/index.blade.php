@@ -8,10 +8,10 @@
     <x-app-layout>
         <x-slot name="header">
             <div>ホーム</div>
-            <form action="ホームのURL" method="get">
-            <input type="search" name="search" placeholder="キーワードで検索">
-            <input type="submit" name="submit" value="検索">
-        </form>
+            <form action="/" method="get">
+                <input type="search" name="search" placeholder="キーワードで検索">
+                <input type="submit" name="submit" value="検索">
+            </form>
         </x-slot>
         <body>
         <!-- 投稿ここから -->
@@ -21,7 +21,7 @@
                     <table>
                         <tr>
                             <th>投稿者</th>
-                            <td>ニックネーム</td>
+                            <td>{{ $post->user->name }}</td>
                         </tr>
                         <tr>
                             <th>料理名</th>
@@ -62,7 +62,6 @@
                     </table>
                 </div>
                 <a href="/posts/{{ $post->id }}">詳細</a>
-                <p></p>
             @endforeach
         </div>
     </body>

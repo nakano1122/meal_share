@@ -13,7 +13,7 @@
                     <table>
                         <tr>
                             <th>投稿者</th>
-                            <td>ニックネーム</td>
+                            <td>{{ $post->user->name }}</td>
                         </tr>
                         <tr>
                             <th>料理名</th>

@@ -24,7 +24,9 @@ class MealShareController extends Controller
         $input = $request['post'];
         $meal_image_url = Cloudinary::upload($request->file('meal_image_url')->getRealPath())->getSecurePath();
         $input += ['meal_image_url' => $meal_image_url];
+        $input += ['user_id' => $request->user()->id];
         $post->fill($input)->save();
+        dd($post);
         return redirect('/');
     }
     
@@ -37,7 +39,6 @@ class MealShareController extends Controller
     public function review_create(Request $request, Review $review)
     {
         $input = $request['review'];
-        //データの取得は成功($input)
         $review->fill($input)->save();
         return redirect('/posts/' . $review->posts_id);
     }
