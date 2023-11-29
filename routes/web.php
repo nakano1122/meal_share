@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MealShareController;
+use App\Http\Controllers\TagController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,6 +37,8 @@ Route::controller(MealShareController::class)->middleware(['auth'])->group(funct
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts/{post}/review', 'review_create')->name('review_create');
 });
+
+Route::get('/tags/{tag}', [TagController::class, 'index']);
 
 
 require __DIR__.'/auth.php';
