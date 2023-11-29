@@ -32,13 +32,20 @@
             <!-- 写真のプレビュー表示 -->
             <textarea name="post[post_comment]" placeholder="コメントを入力してください"></textarea>
             <div class="tag">
+                @foreach($categories as $category)
                 <table>
                     <tr>
-                        <th>季節タグ</th>
-                        <!--タグをリストで取得、キーでforeach回す-->
-                        <td><a href="タグのURL">タグ１</a></td>
+                        <th>{{ $category->category_name }}</th>
+                        @foreach($category->tags as $tag)
+                        <td>
+                            <label>
+                                <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
+                            </label>
+                        </td>
+                        @endforeach
                     </tr>
                 </table>
+                @endforeach
             </div>
             <p></p>
             <input type="submit" value="投稿"/>

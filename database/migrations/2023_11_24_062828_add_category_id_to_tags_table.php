@@ -13,11 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('reviews', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('post_id')->constrained();
-            $table->string('review_comment',100);
-            $table->timestamps();
+        Schema::table('tags', function (Blueprint $table) {
+            $table->after('id', function ($table) {
+                $table->foreignId('category_id')->constrained();
+            });
         });
     }
 
@@ -28,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('reviews');
+        Schema::table('tags', function (Blueprint $table) {
+            //
+        });
     }
 };
