@@ -33,9 +33,13 @@ Route::middleware('auth')->group(function () {
 Route::controller(MealShareController::class)->middleware(['auth'])->group(function(){
     Route::get('/', 'index')->name('index')->middleware('auth');
     Route::get('/create', 'create')->name('create');
+    Route::get('/mypage', 'mypage')->name('mypage');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts/{post}/review', 'review_create')->name('review_create');
+    Route::get('/mypage/{post}/edit', 'edit')->name('edit');
+    Route::put('/mypage/{post}', 'update')->name('update');
+    Route::delete('/mypage/{post}/delete', 'delete')->name('delete');
 });
 
 Route::get('/tags/{tag}', [TagController::class, 'index']);

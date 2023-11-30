@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\Review;
 use Cloudinary;
 
+use Illuminate\Support\Facades\Auth;
+
 class MealShareController extends Controller
 {
     public function index(Post $post)
@@ -20,6 +22,25 @@ class MealShareController extends Controller
     {
         return view('posts.create')->with([
             'tags' => $tag->get(),
+            'categories' => $category->get(),
+        ]);
+    }
+    
+    public function mypage(Post $post, Tag $tag, Review $review)
+    {
+        //ログインしているユーザの投稿を表示
+        $post = Post::where('user_id','=',Auth::id())->get();
+        
+        return view('posts.mypage')->with([
+            'posts' => $post,
+        ]);
+    }
+    
+    public function edit(Post $post, Tag $tag, Category $category)
+    {
+        return view('posts.edit')->with([
+            'post' => $post,
+            'tag' => $tag->get(),
             'categories' => $category->get(),
         ]);
     }
@@ -36,9 +57,9 @@ class MealShareController extends Controller
         return redirect('/');
     }
     
-    public function show(Post $post, Review $review)
+    public function show(Post $post, Review $review, Tag $tag)
     {
-        $reviews=Review::where('post_id','=',$post->id)->get();
+        $reviews = Review::where('post_id','=',$post->id)->get();
         return view('posts.show',compact('post','reviews'));
     }
     
@@ -47,5 +68,11 @@ class MealShareController extends Controller
         $input = $request['review'];
         $review->fill($input)->save();
         return redirect('/posts/' . $review->posts_id);
+    }
+    
+    public function delete(Post $post)
+    {
+        $post->delete();
+        return redirect('/mypage');
     }
 }

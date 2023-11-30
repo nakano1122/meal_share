@@ -39,7 +39,10 @@
                         <tr>
                             <th>この料理のタグ</th>
                             <!--タグをリストで取得、キーでforeach回す-->
-                            <td><a href="タグのURL">タグ１</a></td>
+                            <!--<td><a href="タグのURL">タグ１</a></td>-->
+                            @foreach($post->tags as $tag)
+                            <td><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></td>
+                            @endforeach
                         </tr>
                     </table>
                 </div>

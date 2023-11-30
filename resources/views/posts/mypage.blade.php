@@ -3,11 +3,11 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理一覧ページ</title>
+        <title>マイページ</title>
     </head>
     <x-app-layout>
         <x-slot name="header">
-            <div>ホーム</div>
+            <div>マイページ</div>
             <form action="/" method="get">
                 <input type="search" name="search" placeholder="キーワードで検索">
                 <input type="submit" name="submit" value="検索">
@@ -17,27 +17,6 @@
         <!-- 投稿ここから -->
         <div class="posts">
             @foreach ($posts as $post)
-                <div class="posts_left">
-                    <table>
-                        <tr>
-                            <th>投稿者</th>
-                            <td>{{ $post->user->name }}</td>
-                        </tr>
-                        <tr>
-                            <th>料理名</th>
-                            <td>{{ $post->meal_name }}</td>
-                        </tr>
-                    </table>
-                </div>
-                <div class="posts_right">
-                    <table>
-                        <tr>
-                            <th>投稿日</th>
-                            <td>{{ $post->created_at }}</td>
-                        </tr>
-                    </table>
-                </div>
-                
                 <div>
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
@@ -58,13 +37,40 @@
                         <tr>
                             <th>取得スタンプ数</th>
                             <td>00000</td>
+                        </tr>
+                        <tr>
                             <th>コメント数</th>
                             <td>00000</td>
+                        </tr>
+                        <tr>
+                            <th>投稿日</th>
+                            <td>{{ $post->created_at }}</td>
+                        </tr>
                     </table>
                 </div>
-                <form action="/posts/{{ $post->id }}">
-                    <input type="submit" value="詳細"/>
+                </div>
+                <button type="button"><a href="/posts/{{ $post->id }}">詳細</a></button>
+                
+                <form action="/mypage/{{ $post->id }}/edit" method='POST'>
+                    @csrf
+                    @method('PUT')
+                    <button type="button"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
                 </form>
+                
+                <form action="/mypage/{{ $post->id }}/delete" id="form_{{ $post->id }}" method="post">
+                    @csrf
+                    @method('DELETE')
+                    <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
+                </form>
+                <script>
+                    function deletePost(id) {
+                        'use strict'
+                        
+                        if (confirm('本当に削除しますか？')) {
+                            document.getElementById(`form_${id}`).submit();
+                        }
+                    }
+                </script>
             @endforeach
         </div>
     </body>
