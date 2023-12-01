@@ -34,6 +34,7 @@ Route::controller(MealShareController::class)->middleware(['auth'])->group(funct
     Route::get('/', 'index')->name('index')->middleware('auth');
     Route::get('/create', 'create')->name('create');
     Route::get('/mypage', 'mypage')->name('mypage');
+    Route::get('/ranking', 'ranking')->name('ranking');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
     Route::post('/posts/{post}/review', 'review_create')->name('review_create');

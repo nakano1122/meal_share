@@ -67,12 +67,36 @@ class MealShareController extends Controller
     {
         $input = $request['review'];
         $review->fill($input)->save();
-        return redirect('/posts/' . $review->posts_id);
+        return redirect('/posts/' . $review->post_id);
     }
     
     public function delete(Post $post)
     {
         $post->delete();
         return redirect('/mypage');
+    }
+    
+    public function update(Request $request, Post $post)
+    {
+        $input_post = $request['post'];
+        $input_tags = $request->tags_array;
+        $meal_image_url = Cloudinary::upload($request->file('meal_image_url')->getRealPath())->getSecurePath();
+        $input_post += ['meal_image_url' => $meal_image_url];
+        $input_post += ['user_id' => $request->user()->id];
+        $post->fill($input_post)->save();
+        $post->tags()->syncWithoutDetaching($input_tags);
+        return redirect('/posts/' . $post->id);
+    }
+    
+    public function ranking()
+    {
+        $rank_tags = Tag::withCount('posts')
+        ->orderBy('posts_count', 'desc')
+        ->get();
+        
+        //いいね機能実装後、いいね取得数でランキング化
+        return view('posts.ranking')->with([
+            'rank_tags' => $rank_tags
+        ]);
     }
 }
