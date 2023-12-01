@@ -16,7 +16,7 @@ class Review extends Model
     }
     
     protected $fillable = [
-        'posts_id',
+        'post_id',
         'review_comment',
     ];
 }

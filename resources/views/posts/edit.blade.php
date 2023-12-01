@@ -14,7 +14,7 @@
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <form action="/mypage/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
             <div class="post_left">
@@ -28,7 +28,7 @@
             
             <div class-"meal_image">
                 <h4>投稿する写真を選択してください</h4>
-                <input type="file" name="meal_image_url" value={{ $post->meal_image }}>
+                <input type="file" name="meal_image_url" value={{ $post->meal_image_url }}>
             </div>
             <!-- 写真のプレビュー表示 -->
             <input type="text" name="post[post_comment]" value={{ $post->post_comment }}></input>
@@ -41,6 +41,8 @@
                         <td>
                             <label>
                                 <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
+                                <!-- javaScriptで条件分岐➛s選択済みの物はチェックを付ける -->
+                                <!-- $post->tags -->
                             </label>
                         </td>
                         @endforeach
@@ -48,7 +50,6 @@
                 </table>
                 @endforeach
             </div>
-            <p></p>
             <input type="submit" value="投稿"/>
         </form>
     </body>

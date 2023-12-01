@@ -59,12 +59,12 @@
                         <div>{{ $review->review_comment }}</div>
                     @endforeach
                     
-                    <form action="/posts/{post}/review" method="POST">
+                    <form action="/posts/{{ $post->id }}/review" method="POST">
                         @csrf
                         <h3>コメントする</h3>
                         <textarea name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
                         <input type="submit" value="コメント！"/>
-                        <input type="hidden" name="review[posts_id]" value="{{ $post->id }}">
+                        <input type="hidden" name="review[post_id]" value="{{ $post->id }}">
                     </form>
                 </div>
          
