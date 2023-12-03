@@ -38,10 +38,17 @@
                     {{ __('パスワードを忘れてしまった方はこちら') }}
                 </a>
             @endif
-
-            <x-primary-button class="ml-3">
+            
+            <div>
+                <x-primary-button class="ml-3">
                 {{ __('ログイン') }}
             </x-primary-button>
+            </div>
+            <div>
+                <x-primary-button>
+                <a href="{{ route('register') }}">{{ __('新規登録') }}</a>
+            </x-primary-button>
+            </dib>
         </div>
     </form>
 </x-guest-layout>
