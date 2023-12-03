@@ -30,7 +30,6 @@ class MealShareController extends Controller
     {
         //ログインしているユーザの投稿を表示
         $post = Post::where('user_id','=',Auth::id())->get();
-        
         return view('posts.mypage')->with([
             'posts' => $post,
         ]);
@@ -53,7 +52,7 @@ class MealShareController extends Controller
         $input_post += ['meal_image_url' => $meal_image_url];
         $input_post += ['user_id' => $request->user()->id];
         $post->fill($input_post)->save();
-        $post->tags()->attach($input_tags);
+        $post->tags()->syncWithoutDetaching($input_tags);
         return redirect('/');
     }
     
