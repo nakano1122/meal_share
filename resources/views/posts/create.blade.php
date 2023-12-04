@@ -27,7 +27,17 @@
             
             <div class-"meal_image">
                 <h4>投稿する写真を選択してください</h4>
-                <input type="file" name="meal_image_url">
+                <input type="file" name="meal_image_url" onchange="preview(this)">
+                <div></div>
+                
+                <script>
+                    function preview(elem) {
+                        const file = elem.files[0]
+                        const isOK = file?.type?.startsWith('image/')
+                        const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : ''
+                        elem.nextElementSibling.innerHTML = image
+                    }
+                </script>
             </div>
             <!-- 写真のプレビュー表示 -->
             <textarea name="post[post_comment]" placeholder="コメントを入力してください"></textarea>
