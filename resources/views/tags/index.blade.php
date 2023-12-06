@@ -8,10 +8,6 @@
     <x-app-layout>
         <x-slot name="header">
             <div>ホーム</div>
-            <form action="/" method="get">
-                <input type="search" name="search" placeholder="キーワードで検索">
-                <input type="submit" name="submit" value="検索">
-            </form>
         </x-slot>
         <body>
         <!-- 投稿ここから -->
@@ -44,25 +40,26 @@
                 <!--投稿データのキーでforeach回す-->
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
                 <div class="tag">
-                    <table>
-                        <tr>
-                            <th>この料理のタグ</th>
-                            @foreach($post->tags as $tag)
-                            <td><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></td>
-                            @endforeach
-                        </tr>
-                    </table>
+                    <ul>
+                        <div>この料理のタグ</div>
+                        @foreach($post->tags as $tag)
+                            <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
+                        @endforeach
+                    </ul>
                 </div>
                 <div class="stamps_comments">
-                    <table>
-                        <tr>
-                            <th>取得スタンプ数</th>
-                            <td>00000</td>
-                            <th>コメント数</th>
-                            <td>00000</td>
-                    </table>
+                    <ul>
+                            <li>いいね数</lih>
+                            <li>{{ $post->likes_count }}</li>
+                    </ul>
+                    <ul>
+                        <li>コメント数</li>
+                        <li>{{ $post->reviews_count }}</li>
+                    </ul>
                 </div>
-                <a href="/posts/{{ $post->id }}">詳細</a>
+                <form action="/posts/{{ $post->id }}">
+                    <input type="submit" value="詳細"/>
+                </form>
             @endforeach
         </div>
     </body>

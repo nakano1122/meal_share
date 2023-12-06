@@ -14,9 +14,9 @@ use Illuminate\Support\Facades\Auth;
 
 class MealShareController extends Controller
 {
-    public function index(Post $post)
+    public function index(Post $post, Review $review)
     {
-        $post = $post->withCount('likes')->orderBy('updated_at', 'DESC')->get();
+        $post = $post->withCount('likes')->withCount('reviews')->orderBy('updated_at', 'DESC')->get();
         return view('posts.index')->with([
             'posts' => $post,
             ]);
@@ -33,7 +33,7 @@ class MealShareController extends Controller
     public function mypage(Post $post, Tag $tag, Review $review)
     {
         //ログインしているユーザの投稿を表示
-        $post = Post::where('user_id','=',Auth::id())->get();
+        $post = Post::where('user_id','=',Auth::id())->withCount('likes')->orderBy('updated_at', 'DESC')->get();
         return view('posts.mypage')->with([
             'posts' => $post,
         ]);
@@ -64,7 +64,8 @@ class MealShareController extends Controller
     {
         $reviews = Review::where('post_id','=',$post->id)->get();
         $like_num = $post->likes()->count();
-        return view('posts.show',compact('post','reviews','like_num'));
+        $review_num = $reviews->count();
+        return view('posts.show',compact('post','reviews','like_num','review_num'));
     }
     
     public function review_create(Request $request, Review $review)

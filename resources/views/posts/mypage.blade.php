@@ -8,10 +8,6 @@
     <x-app-layout>
         <x-slot name="header">
             <div>マイページ</div>
-            <form action="/" method="get">
-                <input type="search" name="search" placeholder="キーワードで検索">
-                <input type="submit" name="submit" value="検索">
-            </form>
         </x-slot>
         <body>
         <!-- 投稿ここから -->
@@ -32,7 +28,7 @@
                 </div>
                 <div class="stamps_comments">
                     <ul>
-                        <li>いいね数</lih>
+                        <li>いいね数</li>
                         <li>{{ $post->likes_count }}</li>
                     </ul>
                     <ul>
