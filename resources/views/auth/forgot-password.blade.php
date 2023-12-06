@@ -18,7 +18,7 @@
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                <a href="{{ route('') }}">{{ __('パスワードの再設定を行う') }}</a>
+                <div>{{ __('パスワードの再設定を行う') }}</div>
             </x-primary-button>
         </div>
     </form>
