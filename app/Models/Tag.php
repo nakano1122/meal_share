@@ -11,9 +11,10 @@ class Tag extends Model
 {
     use HasFactory;
     
+    
     public function getByTag(int $limit_count = 10)
     {
-        //今は更新日時でorderしているが、いいね機能がついたらいいね数でorderする
+        //今は更新日時でorderしているが、いいね機能がついたらいいね数でorderする（保留）
         return $this->posts()->with('tags')->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
     
