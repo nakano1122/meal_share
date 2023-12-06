@@ -12,7 +12,7 @@
         <body>
         <!-- ランキング -->
         <div class="tag_ranking">
-            <h2>いま多く使われているタグBEST5</h2>
+            <caption>いま多く使われているタグBEST5</caption>
             <table>
                 <thread>
                     <tr>
@@ -25,6 +25,25 @@
                         <td>{{ $loop->index+1 }}位</td>
                         <td>{{ $rank_tag->tag_name }}</td>
                         <td>{{ $rank_tag->posts_count }}</td>
+                    </tr>
+                    @endforeach
+                </thread>
+            </table>
+        </div>
+        <div class="like_num_ranking">
+            <caption>いいね数が多い投稿ランキング</caption>
+            <table>
+                <thread>
+                    <tr>
+                        <th>順位</th>
+                        <th>投稿</th>
+                        <th>獲得いいね数</th>
+                    </tr>
+                    @foreach($likes as $like)
+                    <tr>
+                        <td>{{ $loop->index+1 }}</td>
+                        <td>{{ $like->meal_name }}</td>
+                        <td>{{ $like->likes_count }}</td>
                     </tr>
                     @endforeach
                 </thread>

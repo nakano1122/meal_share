@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
 use App\Models\Review;
+use App\Models\Like;
 use Cloudinary;
 
 use Illuminate\Support\Facades\Auth;
@@ -15,7 +16,10 @@ class MealShareController extends Controller
 {
     public function index(Post $post)
     {
-        return view('posts.index')->with(['posts' => $post->get()]);
+        $post = $post->withCount('likes')->get();
+        return view('posts.index')->with([
+            'posts' => $post,
+            ]);
     }
     
     public function create(Tag $tag, Category $category)
@@ -59,7 +63,8 @@ class MealShareController extends Controller
     public function show(Post $post, Review $review, Tag $tag)
     {
         $reviews = Review::where('post_id','=',$post->id)->get();
-        return view('posts.show',compact('post','reviews'));
+        $like_num = $post->likes()->count();
+        return view('posts.show',compact('post','reviews','like_num'));
     }
     
     public function review_create(Request $request, Review $review)
@@ -93,9 +98,15 @@ class MealShareController extends Controller
         ->orderBy('posts_count', 'desc')
         ->get();
         
+        $like = Post::withCount('likes')
+        ->orderBy('likes_count', 'desc')
+        ->get();
+        
         //いいね機能実装後、いいね取得数でランキング化
         return view('posts.ranking')->with([
-            'rank_tags' => $rank_tags
+            'rank_tags' => $rank_tags,
+            'likes' => $like,
         ]);
     }
+    
 }
