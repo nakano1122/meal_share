@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\Like;
 
 class Post extends Model
 {
@@ -34,5 +35,10 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+    
+    public function likes()
+    {
+        return $this->hasMany(Like::class);
     }
 }

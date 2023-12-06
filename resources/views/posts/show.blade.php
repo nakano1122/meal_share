@@ -50,24 +50,31 @@
                     <h3>料理投稿者のコメント</h3>
                     <div>{{ $post->post_comment }}</div>
                 </div>
-                <div class="stamps">
-                    <h5>いいね数をここに表示</h5>
-                </div>
-                <div class="review_comments">
-                    <h3>みんなの声</h3>
-                    @foreach($reviews as $review)
-                        <div>{{ $review->review_comment }}</div>
-                    @endforeach
+                <table>
+                    <div class="stamps">
+                        <tr>
+                            <th>いいね数</th>
+                            <td>{{ $like_num }}</td>
+                        </tr>
+                    </div>
+                    <div class="review_comments">
+                        <tr>
+                            <th>みんなの声</th>
+                            <td>reviewの数を表示</td>
+                        </tr>
+                    </table>
+                        @foreach($reviews as $review)
+                            <div>{{ $review->review_comment }}</div>
+                        @endforeach
                     
-                    <form action="/posts/{{ $post->id }}/review" method="POST">
-                        @csrf
-                        <h3>コメントする</h3>
-                        <textarea name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
-                        <input type="submit" value="コメント！"/>
-                        <input type="hidden" name="review[post_id]" value="{{ $post->id }}">
-                    </form>
-                </div>
-         
+                        <form action="/posts/{{ $post->id }}/review" method="POST">
+                            @csrf
+                            <h3>コメントする</h3>
+                            <textarea name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
+                            <input type="submit" value="コメント！"/>
+                            <input type="hidden" name="review[post_id]" value="{{ $post->id }}">
+                        </form>
+                     </div>
         </div>
     </body>
     </x-app-layout>

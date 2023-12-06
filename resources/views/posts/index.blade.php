@@ -56,8 +56,8 @@
                 <div class="stamps_comments">
                     <table>
                         <tr>
-                            <th>取得スタンプ数</th>
-                            <td>00000</td>
+                            <th>いいね数</th>
+                            <td>{{ $post->likes_count }}</td>
                             <th>コメント数</th>
                             <td>00000</td>
                     </table>
