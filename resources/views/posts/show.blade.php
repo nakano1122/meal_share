@@ -58,7 +58,7 @@
                     </div>
                     <div class="review_comments">
                             <li>みんなの声</li>
-                            <li class="review_num">投稿数：reviewの数を表示</li>
+                            <li class="review_num">投稿数：{{ $review_num }}</li>
                         @foreach($reviews as $review)
                             <div>{{ $review->review_comment }}</div>
                         @endforeach

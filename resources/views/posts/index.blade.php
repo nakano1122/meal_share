@@ -8,10 +8,6 @@
     <x-app-layout>
         <x-slot name="header">
             <div>ホーム</div>
-            <form action="/" method="get">
-                <input type="search" name="search" placeholder="キーワードで検索">
-                <input type="submit" name="submit" value="検索">
-            </form>
         </x-slot>
         <body>
         <!-- 投稿ここから -->
@@ -58,7 +54,7 @@
                     </ul>
                     <ul>
                         <li>コメント数</li>
-                        <li>00000</li>
+                        <li>{{ $post->reviews_count }}</li>
                     </ul>
                 </div>
                 <form action="/posts/{{ $post->id }}">
