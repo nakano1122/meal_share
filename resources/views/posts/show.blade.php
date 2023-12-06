@@ -50,6 +50,9 @@
                     <h3>料理投稿者のコメント</h3>
                     <div>{{ $post->post_comment }}</div>
                 </div>
+                <div class="like_button">
+                    
+                </div>
                 <table>
                     <div class="stamps">
                         <tr>

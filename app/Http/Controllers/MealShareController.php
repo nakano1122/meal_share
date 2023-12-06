@@ -16,7 +16,7 @@ class MealShareController extends Controller
 {
     public function index(Post $post)
     {
-        $post = $post->withCount('likes')->get();
+        $post = $post->withCount('likes')->orderBy('updated_at', 'DESC');
         return view('posts.index')->with([
             'posts' => $post,
             ]);
@@ -96,11 +96,11 @@ class MealShareController extends Controller
     {
         $rank_tags = Tag::withCount('posts')
         ->orderBy('posts_count', 'desc')
-        ->get();
+        ->paginate(5);
         
         $like = Post::withCount('likes')
         ->orderBy('likes_count', 'desc')
-        ->get();
+        ->paginate(5);
         
         //いいね機能実装後、いいね取得数でランキング化
         return view('posts.ranking')->with([

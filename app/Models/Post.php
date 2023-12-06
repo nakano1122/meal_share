@@ -22,6 +22,11 @@ class Post extends Model
         'post_comment',
     ];
     
+    public function getPaginateByLimit(int $limit_count)
+    {
+        return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
+    }
+    
     public function reviews()
     {
         return $this->hasMany(Review::class);
