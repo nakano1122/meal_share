@@ -30,5 +30,13 @@ class CategorySeeder extends Seeder
         DB::table('categories')->insert([
             'category_name' => '肉魚タグ',
         ]);
+        
+        DB::table('categories')->insert([
+            'category_name' => '時間帯タグ',
+        ]);
+        
+        DB::table('categories')->insert([
+            'category_name' => '調理器具タグ',
+        ]);
     }
 }

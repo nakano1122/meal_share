@@ -35,16 +35,14 @@
                 <!--投稿データのキーでforeach回す-->
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
                 <div class="tag">
-                    <table>
-                        <tr>
-                            <th>この料理のタグ</th>
+                    <ul>
+                        <li>この料理のタグ</li>
+                        @foreach($post->tags as $tag)
+                            <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
+                        @endforeach
+                    </ul>
                             <!--タグをリストで取得、キーでforeach回す-->
                             <!--<td><a href="タグのURL">タグ１</a></td>-->
-                            @foreach($post->tags as $tag)
-                            <td><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></td>
-                            @endforeach
-                        </tr>
-                    </table>
                 </div>
                 <div class="post_comment">
                     <h3>料理投稿者のコメント</h3>
@@ -53,19 +51,14 @@
                 <div class="like_button">
                     
                 </div>
-                <table>
+                <ul>
                     <div class="stamps">
-                        <tr>
-                            <th>いいね数</th>
-                            <td>{{ $like_num }}</td>
-                        </tr>
+                            <li>いいね数</li>
+                            <li class="like_num">{{ $like_num }}</li>
                     </div>
                     <div class="review_comments">
-                        <tr>
-                            <th>みんなの声</th>
-                            <td>reviewの数を表示</td>
-                        </tr>
-                    </table>
+                            <li>みんなの声</li>
+                            <li class="review_num">投稿数：reviewの数を表示</li>
                         @foreach($reviews as $review)
                             <div>{{ $review->review_comment }}</div>
                         @endforeach
@@ -78,6 +71,8 @@
                             <input type="hidden" name="review[post_id]" value="{{ $post->id }}">
                         </form>
                      </div>
+                </ul>
+                    
         </div>
     </body>
     </x-app-layout>

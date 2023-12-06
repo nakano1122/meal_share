@@ -43,18 +43,17 @@
             <textarea name="post[post_comment]" placeholder="コメントを入力してください"></textarea>
             <div class="tag">
                 @foreach($categories as $category)
-                <table>
-                    <tr>
-                        <th>{{ $category->category_name }}</th>
-                        @foreach($category->tags as $tag)
-                        <td>
-                            <label>
+                <ul>
+                    <h5 class="category_name">{{ $category->category_name }}</h5>
+                    @foreach($category->tags as $tag)
+                        @if($loop->index % 5 == 0 && $loop->index != 0)
+                            <div>改行</div>
+                        @endif
+                            <li class="tag_name">
                                 <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
-                            </label>
-                        </td>
-                        @endforeach
-                    </tr>
-                </table>
+                            </li>
+                    @endforeach
+                </ul>
                 @endforeach
             </div>
             <p></p>
