@@ -17,7 +17,7 @@
                 <form action="/posts/{{ $post->id }}">
                     <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
                 </form>
-            <div class="text-xl">
+            <div class="text-xl ml-2">
                 <div>
                     <table>
                         <tr>

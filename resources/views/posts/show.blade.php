@@ -8,8 +8,9 @@
     <x-app-layout>
         <body>
         <!-- 投稿ここから -->
-        <div class="posts">
-                <div class="posts_left">
+        <div class="bg-orange-100">
+            <div class="text-xl">
+                <div>
                     <table>
                         <tr>
                             <th>投稿者</th>
@@ -21,7 +22,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="posts_right">
+                <div>
                     <table>
                         <tr>
                             <th>投稿日</th>
@@ -29,49 +30,52 @@
                         </tr>
                     </table>
                 </div>
+            </div>
                 <div>
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
                 <!--投稿データのキーでforeach回す-->
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
-                <div class="tag">
-                    <ul>
-                        <li>この料理のタグ</li>
+            <div class="text-lg">
+                <div class="flex">
+                    <div class="font-bold">この料理のタグ</div>
+                    <ul class="flex flex-row flex-wrap underline ml-3">
                         @foreach($post->tags as $tag)
-                            <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
+                            <li class="ml-2"><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
-                <div class="post_comment">
-                    <h3>料理投稿者のコメント</h3>
+                <div class="bg-red-100">
+                    <h3 class="font-bold">料理投稿者のコメント</h3>
                     <div>{{ $post->post_comment }}</div>
                 </div>
-                <div class="like_button">
-                    <form 
-                </div>
                 <ul>
-                    <div class="stamps">
-                            <li>いいね数</li>
-                            <li class="like_num">{{ $like_num }}</li>
+                    <div class="flex">
+                        <li class="font-bold mr-3">いいね数</li>
+                        <li class="like_num">{{ $like_num }}</li>
                     </div>
-                    <div class="review_comments">
-                            <li>みんなの声</li>
-                            <li class="review_num">投稿数：{{ $review_num }}</li>
+                    <div class="flex">
+                        <li class="font-bold mr-3">みんなの声</li>
+                        <li class="review_num">{{ $review_num }}件</li>
+                    </div>
+                    
+                    <div>
                         @foreach($reviews as $review)
                             <div>{{ $review->review_comment }}</div>
                         @endforeach
                     
                         <form action="/posts/{{ $post->id }}/review" method="POST">
                             @csrf
-                            <h3>コメントする</h3>
-                            <textarea name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
+                            <h3 class="font-bold">コメントする</h3>
+                            <textarea class="w-screen" name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
                             <input type="submit" value="コメント！"/>
-                            <input type="hidden" name="review[post_id]" value="{{ $post->id }}">
+                            <input type="hidden" name="review[post_id]" value="{{ $post->id }}"/>
                         </form>
                      </div>
                 </ul>
-                    
+            </div>
         </div>
+                
     </body>
     </x-app-layout>
 </html>

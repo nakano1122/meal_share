@@ -6,14 +6,19 @@
         <title>料理一覧ページ</title>
     </head>
     <x-app-layout>
-        <x-slot name="header">
+        <x-slot name="header" class="sticky top-0 w-screen">
             <div>ホーム</div>
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        <div class="posts">
-            @foreach ($posts as $post)
-                <div class="posts_left">
+        @foreach ($posts as $post)
+        <div class="my-5 bg-orange-100">
+            <p>
+                <form action="/posts/{{ $post->id }}">
+                    <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
+                </form>
+            <div class="text-xl">
+                <div>
                     <table>
                         <tr>
                             <th>投稿者</th>
@@ -25,7 +30,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class="posts_right">
+                <div class="flex">
                     <table>
                         <tr>
                             <th>投稿日</th>
@@ -33,35 +38,35 @@
                         </tr>
                     </table>
                 </div>
+            </div>
                 
-                <div>
+                
+                <div class="w-180 h-250">
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
                 <!--投稿データのキーでforeach回す-->
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
-                <div class="tag">
-                    <ul>
-                        <div>この料理のタグ</div>
+                <div class="flex mr-2">
+                    <div>この料理のタグ</div>
+                    <ul class="flex hover:opacity-75">
                         @foreach($post->tags as $tag)
-                            <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
+                            <li><a href="/tags/{{ $tag->id }}" class="underline flex ml-1">{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
-                <div class="stamps_comments">
-                    <ul>
-                            <li>いいね数</lih>
+                <div class="flex">
+                    <ul class="flex mr-10">
+                            <li>いいね数</li>
                             <li>{{ $post->likes_count }}</li>
                     </ul>
-                    <ul>
+                    <ul class="flex">
                         <li>コメント数</li>
                         <li>{{ $post->reviews_count }}</li>
                     </ul>
                 </div>
-                <form action="/posts/{{ $post->id }}">
-                    <input type="submit" value="詳細"/>
-                </form>
-            @endforeach
-        </div>
+            </div>
+        </p>
+        @endforeach
     </body>
     </x-app-layout>
 </html>
