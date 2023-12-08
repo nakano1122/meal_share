@@ -41,15 +41,13 @@
                             <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
-                            <!--タグをリストで取得、キーでforeach回す-->
-                            <!--<td><a href="タグのURL">タグ１</a></td>-->
                 </div>
                 <div class="post_comment">
                     <h3>料理投稿者のコメント</h3>
                     <div>{{ $post->post_comment }}</div>
                 </div>
                 <div class="like_button">
-                    
+                    <form 
                 </div>
                 <ul>
                     <div class="stamps">

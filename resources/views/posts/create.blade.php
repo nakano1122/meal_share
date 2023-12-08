@@ -26,7 +26,8 @@
             </div>
             
             <div class-"meal_image">
-                <h4>投稿する写真を選択してください</h4>
+                <div>投稿する写真を選択してください</div>
+                <div>画像の向きは横向きを推奨しています。</div>
                 <input type="file" name="meal_image_url" onchange="preview(this)">
                 <div></div>
                 

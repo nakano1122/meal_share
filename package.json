@@ -19,5 +19,5 @@
         "dev": "vite",
         "build": "vite build",
         "watch": "vite build --watch"
-    },
+    }
 }

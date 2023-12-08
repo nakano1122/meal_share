@@ -33,7 +33,7 @@
                     </ul>
                     <ul>
                         <li>コメント数</li>
-                        <li>00000</li>
+                        <li>{{ $post->reviews_count }}</li>
                     </ul>
                     <ul>
                         <li>投稿日</li>

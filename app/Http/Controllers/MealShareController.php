@@ -16,7 +16,7 @@ class MealShareController extends Controller
 {
     public function index(Post $post, Review $review)
     {
-        $post = $post->withCount('likes')->withCount('reviews')->orderBy('updated_at', 'DESC')->get();
+        $post = $post->withCount('likes','reviews')->orderBy('updated_at', 'DESC')->get();
         return view('posts.index')->with([
             'posts' => $post,
             ]);
@@ -33,7 +33,7 @@ class MealShareController extends Controller
     public function mypage(Post $post, Tag $tag, Review $review)
     {
         //ログインしているユーザの投稿を表示
-        $post = Post::where('user_id','=',Auth::id())->withCount('likes')->orderBy('updated_at', 'DESC')->get();
+        $post = Post::where('user_id','=',Auth::id())->withCount('likes', 'reviews')->orderBy('updated_at', 'DESC')->get();
         return view('posts.mypage')->with([
             'posts' => $post,
         ]);
@@ -92,6 +92,7 @@ class MealShareController extends Controller
         $post->tags()->syncWithoutDetaching($input_tags);
         return redirect('/posts/' . $post->id);
     }
+    
     
     public function ranking()
     {
