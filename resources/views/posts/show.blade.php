@@ -8,7 +8,7 @@
     <x-app-layout>
         <body>
         <!-- 投稿ここから -->
-        <div class="bg-orange-100">
+        <div class="bg-orange-200">
             <div class="text-xl">
                 <div>
                     <table>
@@ -39,7 +39,7 @@
             <div class="text-lg">
                 <div class="flex">
                     <div class="font-bold">この料理のタグ</div>
-                    <ul class="flex flex-row flex-wrap underline ml-3">
+                    <ul class="grid grid-cols-5 underline ml-3">
                         @foreach($post->tags as $tag)
                             <li class="ml-2"><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
                         @endforeach
@@ -60,15 +60,17 @@
                     </div>
                     
                     <div>
-                        @foreach($reviews as $review)
-                            <div>{{ $review->review_comment }}</div>
-                        @endforeach
-                    
+                        <div class="grid grid-cols-3">
+                            @foreach($reviews as $review)
+                            <div class="mr-8">{{ $review->review_comment }}</div>
+                            @endforeach
+                        </div>
+                        
                         <form action="/posts/{{ $post->id }}/review" method="POST">
                             @csrf
                             <h3 class="font-bold">コメントする</h3>
                             <textarea class="w-screen" name="review[review_comment]" placeholder="100字以内で書いてください"></textarea>
-                            <input type="submit" value="コメント！"/>
+                            <button type="submit" class="rounded-full opacity-50 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2">コメント！</button>
                             <input type="hidden" name="review[post_id]" value="{{ $post->id }}"/>
                         </form>
                      </div>

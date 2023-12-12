@@ -14,20 +14,21 @@
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        <form action="/posts" method="POST" enctype="multipart/form-data">
+        <div class="bg-orange-200">
+            <form action="/posts" method="POST" enctype="multipart/form-data">
             @csrf
-            <div class="post_left">
+            <div class="post">
                 <table>
                     <tr>
-                        <th>料理名</th>
+                        <th class="text-xl">料理名</th>
                         <td><input type="text" name="post[meal_name]" placeholder="料理名（20字以内）" /></td>
                     </tr>
                 </table>
             </div>
             
-            <div class-"meal_image">
+            <div class-"text-xl">
                 <div>投稿する写真を選択してください</div>
-                <div>画像の向きは横向きを推奨しています。</div>
+                <label><div>画像の向きは横向きを推奨しています。</div></label>
                 <input type="file" name="meal_image_url" onchange="preview(this)">
                 <div></div>
                 
@@ -41,25 +42,25 @@
                 </script>
             </div>
             <!-- 写真のプレビュー表示 -->
-            <textarea name="post[post_comment]" placeholder="コメントを入力してください"></textarea>
-            <div class="tag">
+            <textarea name="post[post_comment]" placeholder="コメントを入力してください" class="w-screen"></textarea>
+            <p class="tag">
                 @foreach($categories as $category)
                 <ul>
-                    <h5 class="category_name">{{ $category->category_name }}</h5>
-                    @foreach($category->tags as $tag)
-                        @if($loop->index % 5 == 0 && $loop->index != 0)
-                            <div>改行</div>
-                        @endif
-                            <li class="tag_name">
+                    <h5 class="text-xl">{{ $category->category_name }}</h5>
+                    <div class="grid grid-cols-4 font-bold">
+                        @foreach($category->tags as $tag)
+                            <li class="ml-2">
                                 <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
                             </li>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </ul>
                 @endforeach
-            </div>
+            </p>
             <p></p>
-            <input type="submit" value="投稿"/>
+            <button type="submit" class="rounded-full opacity-50 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2">投稿！</button>
         </form>
+        </div>
     </body>
     </x-app-layout>
 </html>

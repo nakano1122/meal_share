@@ -11,47 +11,48 @@
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        <div class="posts">
+        <div class="bg-orange-200">
             @foreach ($posts as $post)
                 <div>
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
                 <!--投稿データのキーでforeach回す-->
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
-                <div class="tag">
-                    <ul>
-                        <div>この料理のタグ</div>
+                <div class="flex">
+                    <div class="text-bold mr-2">この料理のタグ</div>
+                    <ul class="underline grid grid-cols-6">
                         @foreach($post->tags as $tag)
                             <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
                 <div class="stamps_comments">
-                    <ul>
-                        <li>いいね数</li>
+                    <ul class="flex">
+                        <li class="mr-5">いいね数</li>
                         <li>{{ $post->likes_count }}</li>
                     </ul>
-                    <ul>
-                        <li>コメント数</li>
+                    <ul class="flex">
+                        <li class="flex mr-5">コメント数</li>
                         <li>{{ $post->reviews_count }}</li>
                     </ul>
-                    <ul>
-                        <li>投稿日</li>
+                    <ul class="flex">
+                        <li class="mr-5">投稿日</li>
                         <li>{{ $post->created_at }}</li>
                     </ul>
                 </div>
-                <button type="button"><a href="/posts/{{ $post->id }}">詳細</a></button>
+                <div class="flex">
+                    <button class="rounded-full opacity-50 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2"><a href="/posts/{{ $post->id }}">詳細</a></button>
                 
                 <form action="/mypage/{{ $post->id }}/edit" method='POST'>
                     @csrf
                     @method('PUT')
-                    <button type="button"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
+                    <button class="rounded-full opacity-50 bg-green-700 hover:bg-green-800 text-white px-4 py-2"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
                 </form>
                 
                 <form action="/mypage/{{ $post->id }}/delete" id="form_{{ $post->id }}" method="post">
                     @csrf
                     @method('DELETE')
-                    <button type="button" onclick="deletePost({{ $post->id }})">削除</button>
+                    <button class="rounded-full opacity-50 bg-red-500 hover:bg-red-700 text-white px-4 py-2" onclick="deletePost({{ $post->id }})">削除</button>
                 </form>
                 <script>
                     function deletePost(id) {
@@ -62,6 +63,8 @@
                         }
                     }
                 </script>
+                </div>
+                
             @endforeach
         </div>
     </body>

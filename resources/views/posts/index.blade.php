@@ -12,7 +12,7 @@
         <body>
         <!-- 投稿ここから -->
         @foreach ($posts as $post)
-        <div class="my-5 bg-orange-100">
+        <div class="my-5 bg-orange-200">
             <p>
                 <form action="/posts/{{ $post->id }}">
                     <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
@@ -48,7 +48,7 @@
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
                 <div class="flex mr-2">
                     <div>この料理のタグ</div>
-                    <ul class="flex hover:opacity-75">
+                    <ul class="grid grid-cols-6">
                         @foreach($post->tags as $tag)
                             <li><a href="/tags/{{ $tag->id }}" class="underline flex ml-1">{{ $tag->tag_name }}</a></li>
                         @endforeach
