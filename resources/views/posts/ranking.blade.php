@@ -11,9 +11,10 @@
         </x-slot>
         <body>
         <!-- ランキング -->
-        <div class="tag_ranking">
-            <caption>いま多く使われているタグBEST5</caption>
-            <table>
+        <div class="bg-orange-200">
+            <div>
+            <div class="text-xl text-bold">いま多く使われているタグBEST5</div>
+            <table style="text-align:center text-bold">
                 <thread>
                     <tr>
                         <th>順位</th>
@@ -23,16 +24,16 @@
                     @foreach($rank_tags as $rank_tag)
                     <tr>
                         <td>{{ $loop->index+1 }}位</td>
-                        <td>{{ $rank_tag->tag_name }}</td>
+                        <td class="underline"><a href="/tags/{{ $rank_tag->id }}">{{ $rank_tag->tag_name }}</a></td>
                         <td>{{ $rank_tag->posts_count }}</td>
                     </tr>
                     @endforeach
                 </thread>
             </table>
         </div>
-        <div class="like_num_ranking">
-            <caption>いいね数が多い投稿ランキング</caption>
-            <table>
+        <p class="like_num_ranking">
+            <div class="text-bold text-xl">いいね数が多い投稿ランキング</div>
+            <table style="text-align:center">
                 <thread>
                     <tr>
                         <th>順位</th>
@@ -42,12 +43,13 @@
                     @foreach($likes as $like)
                     <tr>
                         <td>{{ $loop->index+1 }}</td>
-                        <td>{{ $like->meal_name }}</td>
+                        <td class="underline"><a href="/posts/{{ $like->id }}">{{ $like->meal_name }}</a></td>
                         <td>{{ $like->likes_count }}</td>
                     </tr>
                     @endforeach
                 </thread>
             </table>
+        </p>
         </div>
         </body>
     </x-app-layout>
