@@ -85,12 +85,67 @@ class TagSeeder extends Seeder
         
         DB::table('tags')->insert([
             'category_id' => 3,
+            'tag_name' => 'オクラ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => 'にんじん',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => '大根',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => 'ほうれん草',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => '小松菜',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => 'モロヘイヤ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => 'ネギ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => '玉ねぎ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
             'tag_name' => 'かぼちゃ',
         ]);
         
         DB::table('tags')->insert([
             'category_id' => 3,
             'tag_name' => 'じゃがいも',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => '里芋',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => 'さつまいも',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 3,
+            'tag_name' => '長芋',
         ]);
         
         DB::table('tags')->insert([
@@ -120,69 +175,93 @@ class TagSeeder extends Seeder
         
         DB::table('tags')->insert([
             'category_id' => 4,
+            'tag_name' => 'ひき肉',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 4,
             'tag_name' => '牛肉',
         ]);
         
+        DB::table('tags')->insert([
+            'category_id' => 5,
+            'tag_name' => 'サバ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 5,
+            'tag_name' => 'アジ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 5,
+            'tag_name' => 'サワラ',
+        ]);
+        
+        DB::table('tags')->insert([
+            'category_id' => 5,
+            'tag_name' => 'シイラ',
+        ]);
         
         //時間帯カテゴリーのタグ
         DB::table('tags')->insert([
-            'category_id' => 5,
+            'category_id' => 6,
             'tag_name' => '朝食',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 5,
+            'category_id' => 6,
             'tag_name' => '昼食',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 5,
+            'category_id' => 6,
             'tag_name' => '夕食',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 5,
+            'category_id' => 6,
             'tag_name' => '夜食',
         ]);
         
         //調理器具カテゴリーのタグ
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => 'フライパン',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => '土鍋',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => '中華鍋',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => 'ブンブンチョッパー',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => '鉄製フライパン',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => '玉子焼き機',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => 'オーブン',
         ]);
         
         DB::table('tags')->insert([
-            'category_id' => 6,
+            'category_id' => 7,
             'tag_name' => 'トースター',
         ]);
         

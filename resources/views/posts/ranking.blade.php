@@ -11,7 +11,7 @@
         </x-slot>
         <body>
         <!-- ランキング -->
-        <div class="bg-orange-200">
+        <div class="bg-orange-200 flex justify-center">
             <div>
             <div class="text-xl text-bold">いま多く使われているタグBEST5</div>
             <table style="text-align:center text-bold">
@@ -31,7 +31,7 @@
                 </thread>
             </table>
         </div>
-        <p class="like_num_ranking">
+        <div class="like_num_ranking">
             <div class="text-bold text-xl">いいね数が多い投稿ランキング</div>
             <table style="text-align:center">
                 <thread>
@@ -49,7 +49,7 @@
                     @endforeach
                 </thread>
             </table>
-        </p>
+        </div>
         </div>
         </body>
     </x-app-layout>
