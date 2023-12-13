@@ -3,7 +3,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理一覧ページ</title>
+        <title>タグ検索ページ</title>
     </head>
     <x-app-layout>
         <x-slot name="header" class="sticky top-0 w-screen">
@@ -11,13 +11,13 @@
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        @foreach ($posts as $post)
-        <div class="my-5 bg-orange-200">
-            <p>
+        <div class="lg:grid grid-cols-3">
+            @foreach ($posts as $post)
+        <div class="my-2 bg-orange-200  container lg:px-5">
                 <form action="/posts/{{ $post->id }}">
                     <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
                 </form>
-            <div class="text-xl">
+            <div class="text-xl ml-2">
                 <div>
                     <table>
                         <tr>
@@ -42,15 +42,14 @@
                 
                 
                 <div class="w-180 h-250">
-                    <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
+                    <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません">
                 </div>
-                <!--投稿データのキーでforeach回す-->
-            <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
+
                 <div class="flex mr-2">
                     <div>この料理のタグ</div>
-                    <ul class="grid grid-cols-6">
+                    <ul class="grid grid-cols-6 lg:grid-cols-4">
                         @foreach($post->tags as $tag)
-                            <li><a href="/tags/{{ $tag->id }}" class="underline flex ml-1">{{ $tag->tag_name }}</a></li>
+                            <li><a href="/tags/{{ $tag->id }}" class="underline flex ml-1">#{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -65,8 +64,8 @@
                     </ul>
                 </div>
             </div>
-        </p>
         @endforeach
+        </div>
     </body>
     </x-app-layout>
 </html>

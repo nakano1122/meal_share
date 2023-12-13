@@ -28,7 +28,11 @@ class CategorySeeder extends Seeder
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '肉魚タグ',
+            'category_name' => '肉タグ',
+        ]);
+        
+        DB::table('categories')->insert([
+            'category_name' => '魚タグ',
         ]);
         
         DB::table('categories')->insert([

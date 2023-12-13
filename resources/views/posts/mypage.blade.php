@@ -11,8 +11,9 @@
         </x-slot>
         <body>
         <!-- 投稿ここから -->
-        <div class="bg-orange-200">
+        <div class="lg:mx-auto lg:grid grid-cols-3">
             @foreach ($posts as $post)
+            <div class="container bg-orange-200 my-2 py-5 lg:px-5">
                 <div>
                     <img src="{{ $post->meal_image_url }}" alt="画像が読み込めません"/>
                 </div>
@@ -20,9 +21,9 @@
             <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
                 <div class="flex">
                     <div class="text-bold mr-2">この料理のタグ</div>
-                    <ul class="underline grid grid-cols-6">
+                    <ul class="underline grid grid-cols-6 lg:grid-cols-4">
                         @foreach($post->tags as $tag)
-                            <li><a href="/tags/{{ $tag->id }}">{{ $tag->tag_name }}</a></li>
+                            <li><a href="/tags/{{ $tag->id }}">#{{ $tag->tag_name }}</a></li>
                         @endforeach
                     </ul>
                 </div>
@@ -43,30 +44,33 @@
                 <div class="flex">
                     <button class="rounded-full opacity-50 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2"><a href="/posts/{{ $post->id }}">詳細</a></button>
                 
-                <form action="/mypage/{{ $post->id }}/edit" method='POST'>
-                    @csrf
-                    @method('PUT')
-                    <button class="rounded-full opacity-50 bg-green-700 hover:bg-green-800 text-white px-4 py-2"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
-                </form>
+                    <form action="/mypage/{{ $post->id }}/edit" method='POST'>
+                        @csrf
+                        @method('PUT')
+                        <button class="rounded-full opacity-50 bg-green-700 hover:bg-green-800 text-white px-4 py-2"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
+                    </form>
                 
-                <form action="/mypage/{{ $post->id }}/delete" id="form_{{ $post->id }}" method="post">
-                    @csrf
-                    @method('DELETE')
-                    <button class="rounded-full opacity-50 bg-red-500 hover:bg-red-700 text-white px-4 py-2" onclick="deletePost({{ $post->id }})">削除</button>
-                </form>
-                <script>
-                    function deletePost(id) {
-                        'use strict'
-                        
-                        if (confirm('本当に削除しますか？')) {
-                            document.getElementById(`form_${id}`).submit();
+                    <form action="/mypage/{{ $post->id }}/delete" id="form_{{ $post->id }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="rounded-full opacity-50 bg-red-500 hover:bg-red-700 text-white px-4 py-2" onclick="deletePost({{ $post->id }})">削除</button>
+                    </form>
+                    <script>
+                        function deletePost(id) {
+                            'use strict'
+                            
+                            if (confirm('本当に削除しますか？')) {
+                                document.getElementById(`form_${id}`).submit();
+                            }
                         }
-                    }
-                </script>
+                    </script>
                 </div>
                 
-            @endforeach
+            
         </div>
+        @endforeach
+    </div>
+                
     </body>
     </x-app-layout>
 </html>
