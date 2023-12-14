@@ -15,6 +15,8 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <title>{{ $title ?? 'meal share' }}</title>
+
     </head>
     <body class="font-sans antialiased">
         <div class="min-h-screen bg-gray-100">

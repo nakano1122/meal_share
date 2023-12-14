@@ -51,6 +51,18 @@
                             <h3 class="font-bold">料理投稿者のコメント</h3>
                             <div>{{ $post->post_comment }}</div>
                         </div>
+                        @if(auth()->user())
+                            @if(isset($post->like_posts[0]))
+                                <a class="likes_post" post_id="{{ $post->id }}" like_post="1">
+                                    <i class="fa-solid fa-heart" style="color: #fdb172;"></i>
+                                </a>
+                            @else
+                                <a class="likes_post" post_id="{{ $post->id }}" like_post="0">
+                                    <i class="fa-regular fa-heart fa-lg" style="color: #9d6262;"></i>
+                                </a>
+                            @endif
+                        @endif
+                        
                         <ul>
                             <div class="flex">
                                 <li class="font-bold mr-3">みんなの声</li>
@@ -78,3 +90,4 @@
             </div>
         </div>
     </x-app-layout>
+

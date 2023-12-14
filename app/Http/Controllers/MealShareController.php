@@ -111,6 +111,7 @@ class MealShareController extends Controller
         ]);
     }
     
+
     public function like(Request $request, Like $like)
     {
         $user_id = Auth::user()->id;
