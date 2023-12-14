@@ -22,10 +22,12 @@ class Post extends Model
         'post_comment',
     ];
     
+    /*
     public function getPaginateByLimit(int $limit_count)
     {
         return $this->orderBy('updated_at', 'DESC')->paginate($limit_count);
     }
+    */
     
     public function reviews()
     {
@@ -45,5 +47,9 @@ class Post extends Model
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+    
+    public function isLiked($user): bool {
+        return Like::where('user_id', $user->id)->where('post_id', $this->id)->first() !==null;
     }
 }

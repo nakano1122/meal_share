@@ -112,4 +112,19 @@ class MealShareController extends Controller
         ]);
     }
     
+    public function like_post(Request $request, Like $like)
+    {
+        $user_id = Auth::user()->id;
+        $post_id = $request->post_id;
+        
+        $already_liked = Like::where('user_id', $user_id)->where('post_id',$post_id)->first();
+        
+        if(!$already_liked) {
+            $like->post_id = $post_id;
+            $like->user_id = $user_id;
+            $like->save();
+        } else {
+            Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
+        }
+    }
 }

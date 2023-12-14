@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理詳細ページ</title>
-    </head>
     <x-app-layout>
-        <body>
+    <x-slot name="title">詳細画面</x-slot>
         <!-- 投稿ここから -->
         <div class="bg-orange-200 lg:mx-auto container px-2 py-2">
             <div class="lg:flex">
@@ -45,6 +38,18 @@
                             <h3 class="font-bold">料理投稿者のコメント</h3>
                             <div>{{ $post->post_comment }}</div>
                         </div>
+                        @if(auth()->user())
+                            @if(isset($post->like_posts[0]))
+                                <a class="likes_post" post_id="{{ $post->id }}" like_post="1">
+                                    <i class="fa-solid fa-heart" style="color: #fdb172;"></i>
+                                </a>
+                            @else
+                                <a class="likes_post" post_id="{{ $post->id }}" like_post="0">
+                                    <i class="fa-regular fa-heart fa-lg" style="color: #9d6262;"></i>
+                                </a>
+                            @endif
+                        @endif
+                        
                         <ul>
                             <div class="flex">
                                 <li class="font-bold mr-3">いいね数</li>
@@ -83,6 +88,4 @@
             
         </div>
                 
-    </body>
     </x-app-layout>
-</html>
