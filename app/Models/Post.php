@@ -21,7 +21,6 @@ class Post extends Model
         'meal_image_url',
         'post_comment',
     ];
-    
     /*
     public function getPaginateByLimit(int $limit_count)
     {

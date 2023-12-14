@@ -9,7 +9,6 @@ use App\Models\Category;
 use App\Models\Review;
 use App\Models\Like;
 use Cloudinary;
-
 use Illuminate\Support\Facades\Auth;
 
 class MealShareController extends Controller
@@ -60,12 +59,12 @@ class MealShareController extends Controller
         return redirect('/');
     }
     
-    public function show(Post $post, Review $review, Tag $tag)
+    public function show(Post $post, Review $review)
     {
-        $reviews = Review::where('post_id','=',$post->id)->get();
-        $like_num = $post->likes()->count();
+        $reviews = Review::where('post_id','=',$post->id)->paginate(9);
+        $post_likes_count = $post->likes()->count();
         $review_num = $reviews->count();
-        return view('posts.show',compact('post','reviews','like_num','review_num'));
+        return view('posts.show',compact('post','reviews','post_likes_count','review_num'));
     }
     
     public function review_create(Request $request, Review $review)
@@ -112,19 +111,27 @@ class MealShareController extends Controller
         ]);
     }
     
-    public function like_post(Request $request, Like $like)
+
+    public function like(Request $request, Like $like)
     {
         $user_id = Auth::user()->id;
         $post_id = $request->post_id;
         
-        $already_liked = Like::where('user_id', $user_id)->where('post_id',$post_id)->first();
+        $already_liked = Like::where('user_id', $user_id)->where('post_id', $post_id)->first();
         
-        if(!$already_liked) {
+        if (!$already_liked) {
             $like->post_id = $post_id;
             $like->user_id = $user_id;
             $like->save();
         } else {
             Like::where('post_id', $post_id)->where('user_id', $user_id)->delete();
         }
+        
+        $post_likes_count = Post::withCount('likes')->findOrFail($post_id)->likes_count;
+        $param = [
+            'post_likes_count' => $post_likes_count,
+        ];
+        return response()->json($param);
     }
+    
 }

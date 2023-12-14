@@ -1,5 +1,5 @@
     <x-app-layout>
-    <x-slot name="title">詳細画面</x-slot>
+        <x-slot name="title">詳細ページ</x-slot>
         <!-- 投稿ここから -->
         <div class="bg-orange-200 lg:mx-auto container px-2 py-2">
             <div class="lg:flex">
@@ -33,6 +33,19 @@
                             @endforeach
                         </ul>
                     </div>
+                    
+                    @if (!$post->isLiked(Auth::user()))
+                        <span class="likes">
+                            <i class="fa-solid fa-heart fa-xl like-toggle" data-post-id="{{ $post->id }}" style="color: #ffffff;"></i>
+                            <span class="like-counter">{{ $post_likes_count }}</span>
+                        </span>
+                    @else
+                        <span class="likes">
+                            <i class="fa-solid fa-heart fa-xl like-toggle liked" data-post-id="{{ $post->id }}" style="color: #f43a0b;"></i>
+                            <span class="like-counter">{{ $post_likes_count }}</span>
+                        </span>
+                    @endif
+                    
                     <div class="text-lg">
                         <div class="bg-red-100">
                             <h3 class="font-bold">料理投稿者のコメント</h3>
@@ -51,10 +64,6 @@
                         @endif
                         
                         <ul>
-                            <div class="flex">
-                                <li class="font-bold mr-3">いいね数</li>
-                                <li class="like_num">{{ $like_num }}</li>
-                            </div>
                             <div class="flex">
                                 <li class="font-bold mr-3">みんなの声</li>
                                 <li class="review_num">{{ $review_num }}件</li>
@@ -79,13 +88,6 @@
                     </div>
                 </div>
             </div>
-                
-            
-
-                
-                <!--投稿データのキーでforeach回す-->
-            <!-- 高さ指定で余白は色で埋める（Instagram参考）-->
-            
         </div>
-                
     </x-app-layout>
+
