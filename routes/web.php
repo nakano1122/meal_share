@@ -37,6 +37,7 @@ Route::controller(MealShareController::class)->middleware(['auth'])->group(funct
     Route::get('/ranking', 'ranking')->name('ranking');
     Route::post('/posts', 'store')->name('store');
     Route::get('/posts/{post}', 'show')->name('show');
+    Route::post('/posts/like', 'like')->name('like');
     Route::post('/posts/{post}/review', 'review_create')->name('review_create');
     Route::get('/mypage/{post}/edit', 'edit')->name('edit');
     Route::put('/mypage/{post}', 'update')->name('update');
