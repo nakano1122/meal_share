@@ -31,7 +31,7 @@
                     <div class="flex lg:py-2">
                         <div>
                             <div class="font-bold">この料理のタグ</div>
-                        <ul class="grid grid-cols-5 underline ml-3">
+                        <ul class="grid grid-cols-4 lg:grid-cols-5 underline ml-3">
                             @foreach($post->tags as $tag)
                                 <li class="ml-2"><a href="/tags/{{ $tag->id }}">#{{ $tag->tag_name }}</a></li>
                             @endforeach

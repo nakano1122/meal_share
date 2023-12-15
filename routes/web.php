@@ -20,6 +20,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/only-verified', function () {
+    return view('only-verified');
+})->middleware(['auth', 'verified']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
