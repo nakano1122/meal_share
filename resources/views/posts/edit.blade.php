@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理投稿ページ</title>
-    </head>
     <x-app-layout>
+        <x-slot name="title">編集</x-slot>
         <x-slot name="header">
-            <div>編集</div>
-            <form action="/create" method="get">
-                <!-- 投稿者名をcreate.blade.phpに送りたい -->
-            </form>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('編集ページ') }}
+            </h2>
         </x-slot>
-        <body>
         <!-- 投稿ここから -->
         <form action="/mypage/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
@@ -52,6 +44,4 @@
             </div>
             <input type="submit" value="投稿"/>
         </form>
-    </body>
     </x-app-layout>
-</html>

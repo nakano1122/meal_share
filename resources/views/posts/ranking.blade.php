@@ -1,22 +1,17 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>ランキング各種ページ</title>
-    </head>
     <x-app-layout>
         <x-slot name="header">
-            <div>各種ランキング</div>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('各種ランキング') }}
+            </h2>
         </x-slot>
-        <body>
+        <x-slot name="title">各種ランキング</x-slot>
         <!-- ランキング -->
         <div class="bg-orange-200 flex justify-center">
-            <div>
+            <div class="mx-auto">
             <div class="text-xl text-bold">いま多く使われているタグBEST5</div>
-            <table style="text-align:center text-bold">
+            <table style="text-align:center">
                 <thread>
-                    <tr>
+                    <tr class="mx-auto">
                         <th>順位</th>
                         <th>タグ名</th>
                         <th>総数</th>
@@ -31,11 +26,11 @@
                 </thread>
             </table>
         </div>
-        <div class="like_num_ranking">
+        <div class="mx-auto">
             <div class="text-bold text-xl">いいね数が多い投稿ランキング</div>
             <table style="text-align:center">
                 <thread>
-                    <tr>
+                    <tr class="mx-auto">
                         <th>順位</th>
                         <th>投稿</th>
                         <th>獲得いいね数</th>
@@ -51,6 +46,4 @@
             </table>
         </div>
         </div>
-        </body>
     </x-app-layout>
-</html>

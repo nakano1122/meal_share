@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>マイページ</title>
-    </head>
     <x-app-layout>
+        <x-slot name="title">マイページ</x-slot>
         <x-slot name="header">
-            <div>マイページ</div>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('マイページ') }}
+            </h2>
         </x-slot>
-        <body>
         <!-- 投稿ここから -->
         <div class="lg:mx-auto lg:grid grid-cols-3">
             @foreach ($posts as $post)
@@ -70,7 +65,4 @@
         </div>
         @endforeach
     </div>
-                
-    </body>
     </x-app-layout>
-</html>
