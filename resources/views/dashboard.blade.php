@@ -10,7 +10,7 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <details>
-                        <summary>{{__('他の人が作った料理を見てみよう！') }}</summary>
+                        <summary>{{__('みんなの料理を見てみよう！') }}</summary>
                         <div class="lg:flex">
                             <div class="lg:flex-1">
                                 <p>ここでは投稿とその投稿の
