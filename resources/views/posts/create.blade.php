@@ -1,18 +1,10 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>料理投稿ページ</title>
-    </head>
     <x-app-layout>
+        <x-slot name="title">投稿</x-slot>
         <x-slot name="header">
-            <div>投稿</div>
-            <form action="/create" method="get">
-                <!-- 投稿者名をcreate.blade.phpに送りたい -->
-            </form>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                {{ __('投稿') }}
+            </h2>
         </x-slot>
-        <body>
         <!-- 投稿ここから -->
         <div class="bg-orange-200 lg:mx-20 py-5">
             <form action="/posts" method="POST" enctype="multipart/form-data">
@@ -67,6 +59,4 @@
             <!-- 写真のプレビュー表示 -->
             </form>
         </div>
-    </body>
     </x-app-layout>
-</html>
