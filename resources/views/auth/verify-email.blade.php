@@ -1,31 +1,18 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('ご登録ありがとうございます！') }}
-    </div>
+@component('mail::messages')
+# ご登録ありがとうございます
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('メールに添付されているURLから登録を続けてください。') }}
-        </div>
-    @endif
+この度はご登録いただき、ありがとうございます。<br>
+ご登録を続けるには、以下のボタンをクリックしてください。
 
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
+@component('mail::button', ['url' => $verify_url])
+ご登録を続ける
+@endcomponent
 
-            <div>
-                <x-primary-button>
-                    {{ __('認証用メールを再送する') }}
-                </x-primary-button>
-            </div>
-        </form>
+何かご不明な点などがございましたら、下記よりお問い合わせください。<br>
+[{{ url('contact') }}]({{ url('contact') }})
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
+※こちらのメールは送信専用のメールアドレスより送信しております。<br>
+直接の返信はご遠慮ください。
 
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('ログアウト') }}
-            </button>
-        </form>
-    </div>
-</x-guest-layout>
+{{  config('app.name') }}
+@endcomponent

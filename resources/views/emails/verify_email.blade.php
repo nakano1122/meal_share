@@ -1,12 +1,18 @@
-<x-mail::message>
-# Introduction
+@component('mail::messages')
+# ご登録ありがとうございます
 
-The body of your message.
+この度はご登録いただき、ありがとうございます。<br>
+ご登録を続けるには、以下のボタンをクリックしてください。
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+@component('mail::button', ['url' => $verify_url])
+ご登録を続ける
+@endcomponent
 
-Thanks,<br>
-{{ config('app.name') }}
-</x-mail::message>
+何かご不明な点などがございましたら、下記よりお問い合わせください。<br>
+[{{ url('contact') }}]({{ url('contact') }})
+
+※こちらのメールは送信専用のメールアドレスより送信しております。<br>
+直接の返信はご遠慮ください。
+
+{{  config('app.name') }}
+@endcomponent
