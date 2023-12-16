@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\Post;
 use App\Models\Like;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
     
