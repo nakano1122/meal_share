@@ -1,14 +1,20 @@
     <x-app-layout>
         <x-slot name="title">ホーム</x-slot>
         <x-slot name="header">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <div>
+                <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('ホーム') }}
-            </h2>
+                </h2>
+                <form action="/" class="mx-auto py-2 lg:text-right">
+                    <input type="text" name="keyword" placeholder="料理名で検索" value={{ $keyword }}>
+                    <button type="submit">検索</button>
+                </form>
+            </div>
         </x-slot>
         <!-- 投稿ここから -->
         <div class="lg:grid grid-cols-3 lg:px-2">
             @foreach ($posts as $post)
-        <div class="my-2 bg-orange-200  container lg:px-5 w-100 h-100">
+        <div class="my-2 bg-orange-200 container lg:px-5 w-100 h-100">
                 <form action="/posts/{{ $post->id }}">
                     <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
                 </form>
