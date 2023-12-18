@@ -8,7 +8,7 @@
         <!-- 投稿ここから -->
         <div class="bg-orange-200 lg:mx-auto container px-2 py-2">
             <div class="lg:flex">
-                <div class="lg:w-1/2">
+                <div class="text-xl lg:w-1/2">
                     <table>
                         <tr>
                             <th>投稿者</th>

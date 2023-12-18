@@ -13,11 +13,16 @@ use Illuminate\Support\Facades\Auth;
 
 class MealShareController extends Controller
 {
-    public function index(Post $post, Review $review)
+    public function index(Post $post, Review $review, Request $request)
     {
-        $post = $post->withCount('likes','reviews')->orderBy('updated_at', 'DESC')->get();
+        $post = $post->withCount('likes','reviews')->orderBy('updated_at', 'DESC');
+        $keyword = $request->input('keyword');
+        if(!empty($keyword)) {
+            $post = $post->where('meal_name', 'LIKE', "%{$keyword}%");
+        }
         return view('posts.index')->with([
-            'posts' => $post,
+            'posts' => $post->get(),
+            'keyword' => $keyword
             ]);
     }
     
