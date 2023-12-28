@@ -39,9 +39,7 @@
                 <div class="flex">
                     <button class="rounded-full opacity-50 bg-blue-700 hover:bg-blue-800 text-white px-4 py-2"><a href="/posts/{{ $post->id }}">詳細</a></button>
                 
-                    <form action="/mypage/{{ $post->id }}/edit" method='POST'>
-                        @csrf
-                        @method('PUT')
+                    <form action="/mypage/{{ $post->id }}/edit">
                         <button class="rounded-full opacity-50 bg-green-700 hover:bg-green-800 text-white px-4 py-2"><a href="/mypage/{{ $post->id }}/edit">編集</a></button>
                     </form>
                 

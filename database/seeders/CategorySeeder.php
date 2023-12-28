@@ -16,31 +16,35 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->insert([
-            'category_name' => '季節タグ',
+            'category_name' => '春',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '調理タグ',
+            'category_name' => '夏',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '野菜タグ',
+            'category_name' => '秋',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '肉タグ',
+            'category_name' => '冬',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '魚タグ',
+            'category_name' => 'オールシーズン',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '時間帯タグ',
+            'category_name' => '調理器具',
         ]);
         
         DB::table('categories')->insert([
-            'category_name' => '調理器具タグ',
+            'category_name' => '時間帯',
+        ]);
+        
+        DB::table('categories')->insert([
+            'category_name' => 'その他',
         ]);
     }
 }

@@ -5,16 +5,16 @@
                 <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{ __('ホーム') }}
                 </h2>
-                <form action="/" class="mx-auto py-2 lg:text-right">
+                <form action="/" class="mx-auto py-2 md:text-right">
                     <input type="text" name="keyword" placeholder="料理名で検索" value={{ $keyword }}>
                     <button type="submit">検索</button>
                 </form>
             </div>
         </x-slot>
         <!-- 投稿ここから -->
-        <div class="lg:grid grid-cols-3 lg:px-2">
+        <div class="md:grid grid-cols-3 md:px-2">
             @foreach ($posts as $post)
-        <div class="my-2 bg-orange-200 container lg:px-5 w-100 h-100">
+        <div class="my-2 bg-orange-200 container md:px-5 w-100 h-100">
                 <form action="/posts/{{ $post->id }}">
                     <button type="submit" class="block font-bold rounded hover:bg-orange-200"/>
                 </form>
@@ -48,7 +48,7 @@
 
                 <div class="flex mr-2">
                     <div>この料理のタグ</div>
-                    <ul class="grid grid-cols-6 lg:grid-cols-4">
+                    <ul class="grid grid-cols-5 md:grid-cols-4">
                         @foreach($post->tags as $tag)
                             <li><a href="/tags/{{ $tag->id }}" class="underline flex ml-1">#{{ $tag->tag_name }}</a></li>
                         @endforeach
