@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div>
-                    <div class="grid grid-cols-5">
+                    <div class="grid grid-cols-3 lg:grid-cols-5">
                         @foreach($categories as $category)
                         <div>
                             <div class="text-lg">{{ $category->category_name }}</div>
