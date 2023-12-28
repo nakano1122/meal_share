@@ -11,7 +11,7 @@
             @csrf
             
             <div class="lg:flex">
-                <div class="lg:w-1/2 lg:mr-2">
+                <div>
                     <div class="post">
                     <table>
                         <tr>
@@ -23,7 +23,7 @@
             
                     <div class-"text-xl">
                         <div>投稿する写真を選択してください</div>
-                        <label><div>画像の向きは横向きを推奨しています。</div></label>
+                        <label>画像の向きは横向きを推奨しています。</label>
                         <input type="file" name="meal_image_url" onchange="preview(this)">
                         <div></div>
                         
@@ -38,18 +38,16 @@
                     </div>
                 </div>
                 <div>
-                    <div class="my-2">
+                    <div class="grid grid-cols-5">
                         @foreach($categories as $category)
-                        <ul>
+                        <div>
                             <div class="text-lg">{{ $category->category_name }}</div>
-                            <div class="grid grid-cols-4 font-bold">
+                            <select name="tags_array[]" multiple>
                                 @foreach($category->tags as $tag)
-                                    <li class="my-1">
-                                        <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
-                                    </li>
+                                    <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
                                 @endforeach
-                            </div>
-                        </ul>
+                            </select>
+                        </div>
                         @endforeach
                     </div>
                     <textarea name="post[post_comment]" placeholder="コメントを入力してください" class="w-full h-120"></textarea>

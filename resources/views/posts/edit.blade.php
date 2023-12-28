@@ -2,46 +2,59 @@
         <x-slot name="title">編集</x-slot>
         <x-slot name="header">
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ __('編集ページ') }}
+                {{ __('編集') }}
             </h2>
         </x-slot>
         <!-- 投稿ここから -->
-        <form action="/mypage/{{ $post->id }}" method="POST" enctype="multipart/form-data">
+        <div class="bg-orange-200 lg:mx-20 py-5">
+            <form action="/mypage/{{ $post->id }}" method="POST" enctype="multipart/form-data">
             @csrf
             @method('PUT')
-            <div class="post_left">
-                <table>
-                    <tr>
-                        <th>料理名</th>
-                        <td><input type="text" name="post[meal_name]" value={{ $post->meal_name }} /></td>
-                    </tr>
-                </table>
-            </div>
+            <div class="lg:flex">
+                <div>
+                    <div>
+                    <table>
+                        <tr>
+                            <th class="text-xl">料理名</th>
+                            <td><input type="text" name="post[meal_name]" value="{{ $post->meal_name }}" /></td>
+                        </tr>
+                    </table>
+                    </div>
             
-            <div class-"meal_image">
-                <h4>投稿する写真を選択してください</h4>
-                <input type="file" name="meal_image_url" value={{ $post->meal_image_url }}>
+                    <div class="text-xl">
+                        <div>投稿する写真を選択してください</div>
+                        <label>画像の向きは横向きを推奨しています。</label>
+                        <input type="file" name="meal_image_url" value="{{ $post->meal_image_url }}" onchange="preview(this)">
+                        <div></div>
+                        
+                        <script>
+                            function preview(elem) {
+                                const file = elem.files[0]
+                                const isOK = file?.type?.startsWith('image/')
+                                const image = (file && isOK) ? `<img src=${URL.createObjectURL(file)}>` : ''
+                                elem.nextElementSibling.innerHTML = image
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div>
+                    <div class="grid grid-cols-5">
+                        @foreach($categories as $category)
+                        <div>
+                            <div class="text-lg">{{ $category->category_name }}</div>
+                            <select name="tags_array[]" multiple>
+                                @foreach($category->tags as $tag)
+                                    <option value="{{ $tag->id }}">{{ $tag->tag_name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        @endforeach
+                    </div>
+                    <textarea name="post[post_comment]" class="w-full h-120">{{ $post->post_comment }}</textarea>
+                    <button type="submit" class="rounded-full opacity-80 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2">編集完了！</button>
+                </div>
             </div>
             <!-- 写真のプレビュー表示 -->
-            <input type="text" name="post[post_comment]" value={{ $post->post_comment }}></input>
-            <div class="tag">
-                @foreach($categories as $category)
-                <table>
-                    <tr>
-                        <th>{{ $category->category_name }}</th>
-                        @foreach($category->tags as $tag)
-                        <td>
-                            <label>
-                                <input type="checkbox" value="{{ $tag->id }}" name="tags_array[]">{{ $tag->tag_name }}
-                                <!-- javaScriptで条件分岐➛s選択済みの物はチェックを付ける -->
-                                <!-- $post->tags -->
-                            </label>
-                        </td>
-                        @endforeach
-                    </tr>
-                </table>
-                @endforeach
-            </div>
-            <input type="submit" value="投稿"/>
-        </form>
+            </form>
+        </div>
     </x-app-layout>
