@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\StorePostRequest;
 use App\Models\Post;
 use App\Models\Tag;
 use App\Models\Category;
@@ -52,7 +53,7 @@ class MealShareController extends Controller
         ]);
     }
     
-    public function store(Request $request, Post $post, Tag $tag)
+    public function store(StorePostRequest $request, Post $post, Tag $tag)
     {
         $input_post = $request['post'];
         $input_tags = $request->tags_array;

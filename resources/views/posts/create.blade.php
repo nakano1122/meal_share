@@ -51,10 +51,12 @@
                         @endforeach
                     </div>
                     <textarea name="post[post_comment]" placeholder="コメントを入力してください" class="w-full h-120"></textarea>
+                    @foreach($errors->all() as $message)
+                        <p class="text-red-600">{{ $message }}</p>
+                    @endforeach
                     <button type="submit" class="rounded-full opacity-80 bg-blue-500 hover:bg-blue-700 text-white px-4 py-2">投稿！</button>
                 </div>
             </div>
-            <!-- 写真のプレビュー表示 -->
             </form>
         </div>
     </x-app-layout>
