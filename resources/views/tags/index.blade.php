@@ -6,7 +6,7 @@
                 {{ __('ホーム') }}
                 </h2>
                 <form action="/" class="mx-auto text-right">
-                    <input type="text" name="keyword" placeholder="料理名で検索" value={{ $keyword }}/>
+                    <input type="text" name="keyword" placeholder="料理名で検索" value={{ $keyword }}>
                     <button type="submit">検索</button>
                 </form>
             </div>

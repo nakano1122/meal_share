@@ -7,8 +7,12 @@ use App\Models\Tag;
 
 class TagController extends Controller
 {
-    public function index(Tag $tag)
+    public function index(Tag $tag, Request $request)
     {
-        return view('tags.index')->with(['posts' => $tag->getByTag()]);
+        $keyword = $request->input('keyword');
+        return view('tags.index')->with([
+            'posts' => $tag->getByTag(),
+            'keyword' => $keyword,
+            ]);
     }
 }
