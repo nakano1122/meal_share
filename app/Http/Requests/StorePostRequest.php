@@ -26,7 +26,6 @@ class StorePostRequest extends FormRequest
         return [
             'post.meal_name' => 'required|max:20',
             'post.post_comment' => 'required',
-            'meal_image_url' => 'required',
         ];
     }
     
