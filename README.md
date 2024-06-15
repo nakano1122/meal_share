@@ -11,7 +11,7 @@
 - 料理を見るのが好きな人
 
 ## アプリ概要
-> 閲覧画面
+> 投稿一覧画面
 ![Image](public/images/index.jpg)
 > 投稿画面
 ![Image](public/images/create.jpg)
